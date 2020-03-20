@@ -1,3 +1,4 @@
+![Logo shows old style message box with a swoosh to an extended message box](https://davecra.files.wordpress.com/2020/03/extendedmessagebox.png)
 # ExtendedMessageBox
 An extended message box object that provides many more options such as a checkbox, hyperlink, automatic timed closure, and an expanded text box option.
 
