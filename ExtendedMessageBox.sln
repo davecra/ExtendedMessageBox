@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29905.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtendedMessageBoxTestbed", "ExtendedMessageBox\ExtendedMessageBoxTestbed.csproj", "{EBC897D6-AF10-4100-9233-E87A87458595}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtendedMessageBoxLibrary", "ExtendedMessageBoxLibrary\ExtendedMessageBoxLibrary.csproj", "{D60EBC9B-8412-4145-ABDB-808FFBF4063C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EBC897D6-AF10-4100-9233-E87A87458595}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBC897D6-AF10-4100-9233-E87A87458595}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBC897D6-AF10-4100-9233-E87A87458595}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBC897D6-AF10-4100-9233-E87A87458595}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D60EBC9B-8412-4145-ABDB-808FFBF4063C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D60EBC9B-8412-4145-ABDB-808FFBF4063C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D60EBC9B-8412-4145-ABDB-808FFBF4063C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D60EBC9B-8412-4145-ABDB-808FFBF4063C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {808C46E9-BC83-46A9-9C8C-E4329C7A1C85}
+	EndGlobalSection
+EndGlobal
