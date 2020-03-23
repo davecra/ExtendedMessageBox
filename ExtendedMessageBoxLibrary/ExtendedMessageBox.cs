@@ -144,16 +144,17 @@ namespace ExtendedMessageBoxLibrary
             SIID_MAX_ICONS = 175
         }
         #endregion
-        private const int PICTURE_WIDTH = 32;
-        private const int PICTURE_HEIGHT = 32;
-        private const int BUTTON_WIDTH = 75;
-        private const int BUTTON_HEIGHT = 25;
-        private const int PADDING = 10;
+        private static int PICTURE_WIDTH = 32;
+        private static int PICTURE_HEIGHT = 32;
+        private static int BUTTON_WIDTH = 75;
+        private static int BUTTON_HEIGHT = 25;
+        private static int PADDING = 10;
 
         private static Form MobjForm = null;
         private static bool MbolChecked = false;
         private static bool MbolTimeout = false;
         private static string MstrMoreText = "";
+        private static double MintDPI= 1;
         /// <summary>
         /// Displays a messagebox
         /// </summary>
@@ -209,6 +210,7 @@ namespace ExtendedMessageBoxLibrary
             try
             {
                 Form LobjForm = new Form();
+                MintDPI = GetDPIFactor(LobjForm);
                 LobjForm.StartPosition = FormStartPosition.CenterScreen;
                 LobjForm.FormBorderStyle = FormBorderStyle.FixedSingle;
                 LobjForm.MinimizeBox = false;
@@ -258,6 +260,31 @@ namespace ExtendedMessageBoxLibrary
             catch
             {
                 return null;
+            }
+        }
+
+        /// <summary>
+        /// Gets the factor for form sizing
+        /// </summary>
+        /// <param name="PobjForm"></param>
+        /// <returns></returns>
+        private static double GetDPIFactor(Form PobjForm)
+        {
+            Graphics g = PobjForm.CreateGraphics();
+            try
+            {
+                double LintFactor = (int)Math.Round(g.DpiX / 96.0f, 0);
+                // now set all the semi-constants at the top
+                PADDING = (int)(PADDING * LintFactor);
+                PICTURE_HEIGHT = (int)(PICTURE_HEIGHT * LintFactor);
+                PICTURE_WIDTH = (int)(PICTURE_WIDTH * LintFactor);
+                BUTTON_WIDTH = (int)(BUTTON_WIDTH * LintFactor);
+                BUTTON_HEIGHT = (int)(BUTTON_HEIGHT * LintFactor);
+                return LintFactor;
+            }
+            finally
+            {
+                g.Dispose();
             }
         }
 
@@ -365,8 +392,8 @@ namespace ExtendedMessageBoxLibrary
                 LobjBox.Anchor = AnchorStyles.Top | AnchorStyles.Left;
                 LobjBox.Left = LintLeft + PADDING;
                 LobjBox.Top = LintMiddle;
-                LobjBox.MaximumSize = new Size(600 - PICTURE_WIDTH - (PADDING * 3),
-                                               600 - PADDING);
+                LobjBox.MaximumSize = new Size((int)(600 * MintDPI) - PICTURE_WIDTH - (PADDING * 3),
+                                               (int)(600 * MintDPI) - PADDING);
                 // add
                 LobjPanel.Controls.Add(LobjBox);
                 // hyperlink?
@@ -387,8 +414,8 @@ namespace ExtendedMessageBoxLibrary
                 // size
                 LobjPanel.Width = LintLeft + LobjBox.Width + (PADDING * 4);
                 LobjPanel.Dock = DockStyle.Top;
-                LobjPanel.MaximumSize = new Size(600, 600);
-                LobjPanel.MinimumSize = new Size(40, 40);
+                LobjPanel.MaximumSize = new Size((int)(600 * MintDPI), (int)(600 * MintDPI));
+                LobjPanel.MinimumSize = new Size((int)(40 * MintDPI), (int)(40 * MintDPI));
                 return LobjPanel;
             }
             catch
@@ -450,7 +477,7 @@ namespace ExtendedMessageBoxLibrary
                 LobjPanel.Name = "panelButtons";
                 LobjPanel.BackColor = SystemColors.ControlLight;
                 LobjPanel.Dock = DockStyle.Bottom;
-                LobjPanel.MaximumSize = new Size(600, 100);
+                LobjPanel.MaximumSize = new Size((int)(600 * MintDPI), (int)(100 * MintDPI));
                 int LintButtonCount = 0;
                 int LintLeft = 0;
                 int LintHeight = 0;
@@ -522,7 +549,8 @@ namespace ExtendedMessageBoxLibrary
                 LobjBox.TabStop = false;
                 LobjBox.BackColor = SystemColors.ButtonFace;
                 LobjBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-                LobjButtonPanel.MaximumSize = new Size(600, LobjButtonPanel.Height + LobjBox.Height + PADDING);
+                LobjButtonPanel.MaximumSize = new Size((int)(600 * MintDPI), 
+                                                       LobjButtonPanel.Height + LobjBox.Height + PADDING);
                 LobjButtonPanel.Height += LobjBox.Height + PADDING;
                 // add to the bottom of the button panel
                 LobjButtonPanel.Controls.Add(LobjBox);

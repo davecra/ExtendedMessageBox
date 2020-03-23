@@ -20,6 +20,8 @@ namespace ExtendedMessageBoxTestbed
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
+
             ExtendedDialogResult LobjResult = 
             ExtendedMessageBox.Show(textBox1.Text, 
                                     textBox2.Text, 
@@ -60,6 +62,19 @@ namespace ExtendedMessageBoxTestbed
         private void button2_Click(object sender, EventArgs e)
         {
             textBoxResult.Text = "";
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ExtendedDialogResult LobjResult = ExtendedMessageBox.Show("Hello World - Are you ok?", 
+                                                                      "The Office Context", 
+                                                                      MessageBoxButtons.OKCancel,
+                                                                      MessageBoxIcon.Information,
+                                                                      "Do not show this message again.");
+            if(LobjResult.Result == DialogResult.OK && LobjResult.IsChecked)
+            {
+                // do something
+            }
         }
     }
 }
